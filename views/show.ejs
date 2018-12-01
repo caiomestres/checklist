@@ -4,11 +4,6 @@
 
 <img src="<%=campground.image%>">
 <div><%=campground.description%></div>
-<% campground.comments.forEach((comment)=>{ %>
-<p>
-<%=comment.author%> - <%=comment.text%>
-<%})%>
-</p>
 
 <a href="/campgrounds">Voltar à tela inicial</a>
 <% include ./partials/footer.ejs %>

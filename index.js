@@ -2,16 +2,17 @@ const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
-const Campground = require('./models/campground');
-const Comment = require('./models/comment');
-const seedDB = require('./seeds');
+
 mongoose.connect('mongodb://localhost/checklist3');
 app.use(bodyParser.urlencoded({ extended: true }));
-seedDB();
 //SCHEMA
-
+campgroundSchema = new mongoose.Schema({
+  name: String,
+  image: String,
+  description: String
+});
 //Model
-
+const Campground = mongoose.model('Campground', campgroundSchema);
 app.get('/', (req, res) => {
   res.render('landing.ejs');
 });
@@ -39,13 +40,11 @@ app.get('/campgrounds/new', (req, res) => {
 });
 //show
 app.get('/campgrounds/:id', (req, res) => {
-  Campground.findById(req.params.id)
-    .populate('comments')
-    .exec((err, foundCampground) => {
-      err
-        ? console.log(err)
-        : res.render('show.ejs', { campground: foundCampground });
-    });
+  Campground.findById(req.params.id, (err, foundCampground) => {
+    err
+      ? console.log(err)
+      : res.render('show.ejs', { campground: foundCampground });
+  });
 });
 
 const PORT = process.env.PORT || 3000;
