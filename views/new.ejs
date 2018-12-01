@@ -1,0 +1,10 @@
+<% include ./partials/header.ejs %>
+
+<form action="/campgrounds" method="POST">
+<input type="text" name="name" placeholder="nome">
+<input type="text" name="image" placeholder="URL da image">
+<input type="text" name="description" placeholder="descrição">
+<button type="submit">Adicionar</button>
+</form>
+
+<% include ./partials/footer.ejs %>

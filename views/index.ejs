@@ -1,0 +1,14 @@
+<% include ./partials/header.ejs %>
+<a href="/campgrounds/new">Adicionar campground</a>
+<%campgrounds.forEach((campground)=>{ %>
+
+  <div>
+  <%=campground.name%>
+  <img src="<%=campground.image%>"> 
+  <%=campground.description%>
+  <div> <a href="/campgrounds/<%=campground._id%>">Mostrar mais informações</a>
+  </div>
+  <%})%>
+  </div>
+
+<% include ./partials/footer.ejs %>
